@@ -19,7 +19,7 @@ const app = express();
 app.use(express.json());
 app.use(
   cors({
-    origin: ["https://rideeasy-rentals-frontend.vercel.app/"],
+    origin: ["https://rideeasy-rentals-frontend.vercel.app"],
     methods: ["GET", "POST", "PUT", "DELETE"], // optional
   })
 );
