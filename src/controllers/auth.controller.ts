@@ -27,7 +27,7 @@ export const registerUser = async (req: Request, res: Response) => {
       password: hash,
       firstname,
       lastname,
-      roles: [Role.ADMIN]
+      roles: [Role.USER]
     })
 
     res.status(201).json({
