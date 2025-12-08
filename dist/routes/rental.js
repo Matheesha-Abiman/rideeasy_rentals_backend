@@ -1,0 +1,13 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const rental_controller_1 = require("../controllers/rental.controller");
+const role_1 = require("../middleware/role");
+const user_model_1 = require("../models/user.model");
+const router = (0, express_1.Router)();
+router.post("/create", (0, role_1.requireRole)([user_model_1.Role.ADMIN, user_model_1.Role.USER]), rental_controller_1.createRental);
+router.get("/getAll", (0, role_1.requireRole)([user_model_1.Role.ADMIN, user_model_1.Role.USER]), rental_controller_1.getAllRentals);
+router.get("/:id", (0, role_1.requireRole)([user_model_1.Role.ADMIN, user_model_1.Role.USER]), rental_controller_1.getRentalById);
+router.put("/status/:id", (0, role_1.requireRole)([user_model_1.Role.ADMIN, user_model_1.Role.USER]), rental_controller_1.updateRentalStatus);
+router.delete("/delete/:id", (0, role_1.requireRole)([user_model_1.Role.ADMIN, user_model_1.Role.USER]), rental_controller_1.deleteRental);
+exports.default = router;

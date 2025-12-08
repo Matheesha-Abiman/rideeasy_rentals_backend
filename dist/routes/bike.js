@@ -1,0 +1,17 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const bike_controller_1 = require("../controllers/bike.controller");
+const user_model_1 = require("../models/user.model");
+const role_1 = require("../middleware/role");
+const upload_1 = require("../middleware/upload");
+const bike_controller_2 = require("../controllers/bike.controller");
+const bike_controller_3 = require("../controllers/bike.controller");
+const router = (0, express_1.Router)();
+router.post("/create", (0, role_1.requireRole)([user_model_1.Role.ADMIN, user_model_1.Role.USER]), upload_1.upload.single("images"), bike_controller_1.createBike);
+router.get("/getAll", (0, role_1.requireRole)([user_model_1.Role.ADMIN, user_model_1.Role.USER]), bike_controller_1.getAllBike);
+router.put("/update/:id", (0, role_1.requireRole)([user_model_1.Role.ADMIN, user_model_1.Role.USER]), upload_1.upload.single("image"), bike_controller_1.editBike);
+router.delete("/delete/:id", (0, role_1.requireRole)([user_model_1.Role.ADMIN, user_model_1.Role.USER]), bike_controller_1.deleteBike);
+router.get("/:id", (0, role_1.requireRole)([user_model_1.Role.ADMIN, user_model_1.Role.USER]), bike_controller_2.getBikeById);
+router.get("/", (0, role_1.requireRole)([user_model_1.Role.ADMIN, user_model_1.Role.USER]), bike_controller_3.searchBike);
+exports.default = router;
